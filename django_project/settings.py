@@ -123,3 +123,12 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# AdminLTE2 settings
+ADMINLTE2_USE_LOGIN_REQUIRED = True
+ADMINLTE2_LOGO_TEXT = "Ticket Tracking"
+ADMINLTE2_LOGO_TEXT_SMALL = "TT"
+
+ADMINLTE2_INCLUDE_ADMIN_HOME_LINK = True
+ADMINLTE2_INCLUDE_MAIN_NAV_ON_ADMIN_PAGES = True
+ADMINLTE2_INCLUDE_ADMIN_NAV_ON_MAIN_PAGES = True
