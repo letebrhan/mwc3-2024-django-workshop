@@ -1,0 +1,16 @@
+# Custom Dictionary Words
+adminlte
+contenttypes
+createsuperuser
+endfor
+kwargs
+makemigrtaions
+plugable
+queryset
+Quickstart
+runserver
+startapp
+startproject
+staticfiles
+urlpatterns
+venv
