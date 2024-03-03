@@ -1,0 +1,13 @@
+{% extends "adminlte2/base.html" %}
+
+{% block page_name %}
+Update Ticket
+{% endblock page_name %}
+
+{% block breadcrumbs %}
+  {% include "_ticket_breadcrumb.html" with icon="pencil" action="Update" %}
+{% endblock breadcrumbs %}
+
+{% block content %}
+  {% include "_ticket_form.html" with color="success" action="Update" %}
+{% endblock content %}
