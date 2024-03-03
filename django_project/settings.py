@@ -127,6 +127,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # AdminLTE2 settings
 ADMINLTE2_USE_LOGIN_REQUIRED = True
+ADMINLTE2_HOME_ROUTE = "open_ticket_list"
 ADMINLTE2_LOGO_TEXT = "Ticket Tracking"
 ADMINLTE2_LOGO_TEXT_SMALL = "TT"
 
