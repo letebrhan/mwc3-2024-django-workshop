@@ -134,3 +134,33 @@ ADMINLTE2_LOGO_TEXT_SMALL = "TT"
 ADMINLTE2_INCLUDE_ADMIN_HOME_LINK = True
 ADMINLTE2_INCLUDE_MAIN_NAV_ON_ADMIN_PAGES = True
 ADMINLTE2_INCLUDE_ADMIN_NAV_ON_MAIN_PAGES = True
+
+# AdminLTE2 menu
+ADMINLTE2_MENU = [
+    {
+        "text": "Home",
+        "nodes": [
+            {
+                "route": "open_ticket_list",
+                "text": "Open Tickets",
+                "icon": "fa fa-dashboard",
+                "active_requires_exact_url_match": True,
+            },
+            {
+                "route": "closed_ticket_list",
+                "text": "Closed Tickets",
+                "icon": "fa fa-ticket",
+            },
+        ],
+    },
+    {
+        "text": "Profile",
+        "nodes": [
+            {
+                "route": "password_change",
+                "text": "Change Password",
+                "icon": "fa fa-lock",
+            },
+        ],
+    },
+]
