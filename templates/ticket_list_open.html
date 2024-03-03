@@ -1,0 +1,23 @@
+{% extends "adminlte2/base.html" %}
+
+{% block page_name %}
+Open Tickets
+{% endblock page_name %}
+
+{% block breadcrumbs %}
+  {% include "_ticket_breadcrumb.html" with icon="ticket" action="Open" %}
+{% endblock breadcrumbs %}
+
+{% block content %}
+
+  <a href="{% url "ticket_create" %}" class="btn btn-primary pull-right">
+    <i class="fa fa-plus"></i> New Ticket
+  </a>
+
+  <br><br>
+
+  {% include "_ticket_box.html" with tickets=open_high_tickets color="danger" priority="High Priority" %}
+  {% include "_ticket_box.html" with tickets=open_medium_tickets color="warning" priority="Medium Priority" %}
+  {% include "_ticket_box.html" with tickets=open_low_tickets color="info" priority="Low Priority" %}
+
+{% endblock content %}

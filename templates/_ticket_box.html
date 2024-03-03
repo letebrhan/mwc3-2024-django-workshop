@@ -1,0 +1,34 @@
+<div class="box box-solid box-{{ color }}">
+  <div class="box-header with-border">
+    <h3 class="box-title">{{ priority }} Tickets</h3>
+  </div>
+  <div class="box-body">
+    {% if tickets.exists %}
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Assigned To</th>
+          <th>Complete By</th>
+          <th class="text-right">Actions</th>
+        </tr>
+        {% for ticket in tickets.all %}
+          <tr>
+            <td>{{ ticket.name }}</td>
+            <td>{{ ticket.assigned_to.username }}</td>
+            <td>{{ ticket.complete_by }}</td>
+            <td class="text-right">
+              <a href="{% url "ticket_update" ticket.pk %}" class="btn btn-success">
+                <i class="fa fa-pencil"></i> Update
+              </a>
+              <a href="{% url "ticket_delete" ticket.pk %}" class="btn btn-danger">
+                <i class="fa fa-times"></i> Delete
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <h3>No Tickets For This Priority Level</h3>
+    {% endif %}
+  </div>
+</div>
