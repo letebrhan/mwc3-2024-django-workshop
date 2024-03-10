@@ -36,6 +36,8 @@ Open up the Windows Command prompt (Terminal) `WINDOWS KEY` and search for `CMD`
     .venv\Scripts\activate.bat
     ```
 
+<div style="page-break-after: always;"></div>
+
 5. Update pip if needed
     ```bash
     python -m pip install --upgrade pip
@@ -73,7 +75,7 @@ Open up the Windows Command prompt (Terminal) `WINDOWS KEY` and search for `CMD`
     python manage.py migrate
     ```
 
-12. The migration process will take python code and use it to generate a database for us. The database will be a SQLite database, which is a simple file based database located in the root of our project called `db.sqlite`.
+12. The migration process will take python code and use it to generate a database for us. The database will be a simple SQLite, file based database, located in the root of our project called `db.sqlite`.
 
 
 ## Open The Project Code And Set Up AdminLTE2-PDQ
@@ -143,6 +145,8 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
         "django.contrib.staticfiles",
     ]
     ```
+
+<div style="page-break-after: always;"></div>
 
 ## Create Database Models
 1. Create the required database model in the app's `models.py` file
@@ -257,6 +261,8 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
     ADMINLTE2_HOME_ROUTE = "open_ticket_list"
     ```
 
+<div style="page-break-after: always;"></div>
+
 ## Create Open Ticket List View For First URL Endpoint
 1. Update the `views.py` file to contain our first view for the url endpoint we set up in the previous step.
 
@@ -333,6 +339,7 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
         },
     ]
     ```
+<div style="page-break-after: always;"></div>
 
 ## Create Open Ticket List View Template And Partial Templates
 1. Create all of the template files that we will need for the whole app. Create all of them right now so we are done with it and don't have to keep creating them as we need them.
@@ -348,6 +355,8 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
     ticket_list_open.html
     ticket_update.html
     ```
+
+<div style="page-break-after: always;"></div>
 
 2. Template partials are small snippets that are meant to be reused multiple times when creating templates. They are prefixed with an underscore to denote that they are not a full page.
 
@@ -392,6 +401,8 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
       </div>
     </div>
     ```
+
+<div style="page-break-after: always;"></div>
 
 3. Create the `_ticket_breadcrumb.html` partial.
 
@@ -476,6 +487,8 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
     python manage.py runserver
     ```
 
+<div style="page-break-after: always;"></div>
+
 ## Create Remaining Templates Utilizing Created Partials
 1. Use partials to create the `ticket_list_closed.html` page.
 
@@ -519,6 +532,8 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
     {% endblock content %}
     ```
 
+<div style="page-break-after: always;"></div>
+
 3. Use partials to create the `ticket_update.html` page.
 
     <br />
@@ -561,6 +576,7 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
     {% endblock content %}
     ```
 
+<div style="page-break-after: always;"></div>
 
 ## Create Remaining Views For The Templates We Just Created
 1. Update the `views.py` file by appending the following Views that will complete our site.
@@ -605,8 +621,11 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
             """Where to send user on success"""
             messages.success(self.request, "Ticket Updated Successfully")
             return reverse("open_ticket_list")
+    ```
 
+    <div style="page-break-after: always;"></div>
 
+    ```python
     class TicketDeleteView(DeleteView):
         """Delete a ticket"""
 
@@ -649,6 +668,8 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
     ]
     ```
 
+<div style="page-break-after: always;"></div>
+
 ## Update The AdminLTE2-PDQ Menu To Contain Links For Our Site
 1. We now need to tell AdminLTE2-PDQ what URL route we want to be our home page. Additionally, we want to define the sidebar menu. Both things are done by creating a setting in the `settings.py` file. Append the following lines to the bottom of the `settings.py` file.
 
@@ -686,6 +707,8 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
         },
     ]
     ```
+
+<div style="page-break-after: always;"></div>
 
 ## Test Out The Entire Site
 Assuming everything went well, you should not be able to run the server again and verify that everything works as intended.
