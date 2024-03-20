@@ -30,7 +30,7 @@ Open up the Windows Command prompt (Terminal) `WINDOWS KEY` and search for `CMD`
     cd mwc3_ticket_tracker
     ```
 
-4. Create a new virtual environment for the project and activate it.
+4. Create a new virtual environment for the project and activate it. **NOTE:** Will be different if using something other than CMD.
     ```bash
     python -m venv .venv
     .venv\Scripts\activate.bat
@@ -43,7 +43,7 @@ Open up the Windows Command prompt (Terminal) `WINDOWS KEY` and search for `CMD`
     python -m pip install --upgrade pip
     ```
 
-6. Install the required packages. NOTE: django must be version 4.2
+6. Install the required packages. **NOTE:** django must be version 4.2
     ```bash
     python -m pip install django~=4.2
     python -m pip install django-adminlte2-pdq
@@ -54,7 +54,7 @@ Open up the Windows Command prompt (Terminal) `WINDOWS KEY` and search for `CMD`
     python -m pip freeze > requirements.txt
     ```
 
-8. Start the new Django project. NOTE: Do NOT forget the period on the end.
+8. Start the new Django project. **NOTE:** Do NOT forget the period on the end.
     ```bash
     django-admin startproject django_project .
     ```
@@ -84,7 +84,7 @@ Open up the Windows Command prompt (Terminal) `WINDOWS KEY` and search for `CMD`
     code .
     ```
 
-2. Follow the Quickstart instructions for Django-AdminLTE2-PDQ located at the following link:
+2. Follow Steps 2 - 5 of the Quickstart instructions for Django-AdminLTE2-PDQ located at the following link:
 [https://django-adminlte2-pdq.readthedocs.io/en/latest/quickstart.html](https://django-adminlte2-pdq.readthedocs.io/en/latest/quickstart.html)
 
 3. Re-run the development server and verify that AdminLTE2-PDQ is working.
@@ -187,9 +187,9 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
             return self.name
     ```
 
-2. Now that we have our model created, we need to migrate that work into the database. It is a two step process. 1. Create a migration that can do the DB work for us. 2. Apply the migration to actually do that DB work. In the terminal:
+2. Now that we have our model created, we need to migrate that work into the database. It is a two step process. First, create a migration that can do the DB work for us. Second, apply the migration to actually do that DB work. In the terminal:
     ```bash
-    python manage.py makemigrtaions tickets
+    python manage.py makemigrations tickets
     python manage.py migrate
     ```
 
@@ -206,7 +206,7 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
     admin.register(Ticket)
     ```
 
-4. In the browser navigate to the following URL and see what is available for interacting with our new model.
+4. Restart the development server if it is not running and then in the browser navigate to the following URL and see what is available for interacting with our new model.
 `http://localhost:8000/admin/`
 
 
@@ -218,12 +218,15 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
 
 <br>
 
-2. Register the new `urls.py` file with the projects `urls.py` file.
+2. Register the new `urls.py` file with the projects `urls.py` file. **NOTE:** The order matters. Ensure yours matches the below code.
 
     <br>
 
     `django_project/urls.py`
     ```python
+    from django.contrib import admin
+    from django.urls import path, include
+
     urlpatterns = [
         path("accounts/", include("django.contrib.auth.urls")),
         path("admin/", admin.site.urls),
@@ -234,7 +237,7 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
 
 3. Create the first URL endpoint for the app that will show all of the open tickets.
 
-    NOTE: We have not created the OpenTicketListView class yet. As a result, the import may have issues for now but should be fixed in one of the next steps.
+    **NOTE:** We have not created the OpenTicketListView class yet. As a result, the import may have issues for now but should be fixed in one of the next steps.
 
     <br>
 
@@ -266,7 +269,9 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
 ## Create Open Ticket List View For First URL Endpoint
 1. Update the `views.py` file to contain our first view for the url endpoint we set up in the previous step.
 
-    NOTE: Some of the import statements will not be used right now. But we are adding them now because we will need them later on.
+    **NOTE:** Some of the import statements will not be used right now. But we are adding them now because we will need them later on.
+
+    **NOTE:** The `from django.shortcuts import render` line in the file can be removed.
 
     <br>
 
@@ -313,7 +318,7 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
     ```
     To
     ```python
-    "DIRS": [BASE_DIR / "templates"]
+    "DIRS": [BASE_DIR / "templates"],
     ```
 
     <br>
@@ -469,9 +474,9 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
 
     {% block content %}
 
-      <a href="{% url "ticket_create" %}" class="btn btn-primary pull-right">
+      {% comment %}<a href="{% url "ticket_create" %}" class="btn btn-primary pull-right">
         <i class="fa fa-plus"></i> New Ticket
-      </a>
+      </a>{% endcomment %}
 
       <br><br>
 
@@ -485,6 +490,35 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
 6. Test out the site and verify that we can see the boxes. Run the server if it is not already running and visit `http://localhost:8000`
     ```bash
     python manage.py runserver
+    ```
+
+7. After confirming that our first page works and before finishing the other pages, we need to uncomment the create link that was commented out in step 5 so that the link will work when finished.
+
+    **NOTE:** After doing this uncomment, the site will not work until we finish the rest of the steps in this workshop.
+
+    <br>
+
+    `templates/ticket_list_open.html`
+
+    Change this:
+    ```django
+    {% block content %}
+
+      {% comment %}<a href="{% url "ticket_create" %}" class="btn btn-primary pull-right">
+        <i class="fa fa-plus"></i> New Ticket
+      </a>{% endcomment %}
+
+      <br><br>
+    ```
+    To This:
+    ```django
+    {% block content %}
+
+      <a href="{% url "ticket_create" %}" class="btn btn-primary pull-right">
+        <i class="fa fa-plus"></i> New Ticket
+      </a>
+
+      <br><br>
     ```
 
 <div style="page-break-after: always;"></div>
@@ -579,9 +613,9 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
 <div style="page-break-after: always;"></div>
 
 ## Create Remaining Views For The Templates We Just Created
-1. Update the `views.py` file by appending the following Views that will complete our site.
+1. Update the `views.py` file by **appending** the following Views that will complete our site.
 
-    NOTE: By the end of this, all import statements should be used.
+    **NOTE:** By the end of this, all import statements at the top of the file should be used.
 
     <br>
 
@@ -625,6 +659,7 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
 
     <div style="page-break-after: always;"></div>
 
+    `tickets/views.py` (Continued)
     ```python
     class TicketDeleteView(DeleteView):
         """Delete a ticket"""
@@ -643,8 +678,7 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
 ## Create the Remaining URLs For The Views We Just Created
 1. Import the views that we just made and then create the remaining URL endpoints needed to complete the app.
 
-    NOTE: The below code is what the finished file looks like.
-
+    **NOTE:** The below code is what the finished file looks like.
     <br>
 
     `tickets/urls.py`
@@ -711,11 +745,11 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
 <div style="page-break-after: always;"></div>
 
 ## Test Out The Entire Site
-Assuming everything went well, you should not be able to run the server again and verify that everything works as intended.
+Assuming everything went well, you should not be able to run the server again and verify that everything works as intended. In the terminal run:
 ```bash
 python manage.py runserver
 ```
-In a browser visit:
+Then in a browser visit:
 ```bash
 http://localhost:8000
 ```
