@@ -203,7 +203,7 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
 
     from .models import Ticket
 
-    admin.register(Ticket)
+    admin.site.register(Ticket)
     ```
 
 4. Restart the development server if it is not running and then in the browser navigate to the following URL and see what is available for interacting with our new model.
@@ -541,7 +541,7 @@ Great! We now have the stock adminLTE2-pdq site up and running. Time to start ma
     {% endblock breadcrumbs %}
 
     {% block content %}
-      {% include "_ticket_box.html" with tickets=closed_tickets color="purple" priority="Closed" %}
+      {% include "_ticket_box.html" with tickets=ticket_list color="purple" priority="Closed" %}
     {% endblock content %}
     ```
 
