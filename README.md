@@ -16,7 +16,7 @@ Open up the Windows Command prompt (Terminal) `WINDOWS KEY` and search for `CMD`
 
     Which should return something like:
     ```bash
-    Python 3.11.8
+    Python 3.11.8 or above
     ```
 
 2. Navigate to where you would like to start the project. EX:
